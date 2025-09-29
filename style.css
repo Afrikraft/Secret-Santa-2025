@@ -3,20 +3,73 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  text-align: center;
-  height: 100%;
+  width: 100%;
+}
+
+.logo-img {
+  max-height: 100px;
+  width: auto;
+  
+}
+
+/* header */
+#header{
+position: absolute;
+top: 0;
+left: 0;
+height: 80px;
+width: 100%;
+z-index: 100;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 20px 0px;
+background: transparent;
+
+}
+
+#navbar{
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0;
+padding: 0;
+  
+}
+
+#navbar li{
+list-style: none;
+  padding: 0 20px;
+}
+
+#navbar li a{
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  
+}
+
+#navbar li a.active {
+  color: white;
+  
 }
 
 /* Hero Section with full background */
 .hero {
-  position: relative;
   height: 100vh; /* full screen */
-  background: url("https://i.imghippo.com/files/iBPb4132jA.jpeg") no-repeat center center/cover;
+  background: url("https://i.imghippo.com/files/Shu7030BuY.jpeg") no-repeat center center fixed;
+  width: 100%;
+  background-size: cover;
+padding: 0 80px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+   line-height: 1;
+   margin: 0px;
+   padding: 0;
 }
-
 .overlay {
   width: 100%;
   height: 100%;
@@ -27,16 +80,12 @@ body, html {
   justify-content: center;
 }
 
-/* Logo Section */
-.logo img {
-  max-width: 200px;
-  margin-bottom: 20px;
-}
-
 /* Hero Text */
 .hero-text {
   color: white;
   text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+  text-align: center;
+  margin-top: 100px;
 }
 
 .hero-text h1 {
@@ -45,7 +94,47 @@ body, html {
 }
 
 .hero-text p {
-  font-size: 2.3rem;
+  font-size: 2rem;
+}
+
+
+/* Exclude Section */
+.exclude-section {
+  text-align: center;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+  
+}
+
+.exclude-section input {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.exclude-section button {
+  padding: 8px 15px;
+  font-size: 12px;
+  margin-left: 10px;
+  cursor: pointer;
+  background: #0073e6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.exclude-section button:hover {
+  background: #005bb5;
+}
+
+.exclude-section p {
+  margin-top: 10px;
+  font-style: italic;
+  color: #444;
 }
 
 /* Circles Section */
@@ -69,6 +158,7 @@ body, html {
   font-size: 16px;
   cursor: pointer;
   transition: transform 0.2s ease;
+   margin-bottom: 150px;
 }
 
 .circle:hover {
