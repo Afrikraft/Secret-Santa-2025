@@ -8,13 +8,21 @@
 </head>
 <body>
 
+  <!-- logo and Nav section -->
+  <section id="header">
+    <a href="#"><img src="https://i.imghippo.com/files/GZN6448GRk.png" alt="logo" class= "logo-img"></a> 
+    <ul id="navbar">
+ <li><a href="index.html" class="active">Home</a></li> 
+ <li><a href="#" class="active">Blog</a></li>
+    </ul>
+           </section>
+
+
+
   <!-- Hero Section -->
   <section class="hero">
-    <div class="overlay">
-      <!-- Logo -->
-      <header class="logo">
-        <img src="https://i.imghippo.com/files/GZN6448GRk.png" alt="Logo">
-      </header>
+  <div class="overlay">
+
 
       <!-- Hero Text -->
       <div class="hero-text">
@@ -23,13 +31,28 @@
       </div>
     </div>
   </section>
+<!-- exclude section -->
+  <section class="exclude-section">
+    <h2>Enter Your First Name to Be Excluded</h2>
+    <input type="text" id="excludeName" placeholder="Enter your name" />
+    <button onclick="excludeMyName()">Exclude Me</button>
+    <p id="excludeMsg"></p>
+  </section>
+
 
   <!-- Circles Section -->
   <main>
     <div id="circles" class="circle-container"></div>
   </main>
 
+  <!-- Circles Section -->
+<main>
+  <div id="circles" class="circle-container"></div>
+  <button id="resetBtn">Reset Game</button> <!-- NEW -->
+</main>
+  
   <script src="script.js"></script>
+
 </body>
 </html>
 
