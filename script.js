@@ -14,13 +14,35 @@ const staff = [
   
   { name: "Collins", color: "black" }
 ];
-
+let excludedName = " ";
 let assignments = [];
 let alreadyClicked = false;
 
+
+
+// --- NEW: persistence keys ---
+const STORAGE_KEYS = {
+  ASSIGNMENTS: 'secretSanta_assignments',
+  CLICKED_RECIPIENT: 'secretSanta_clicked_recipient'
+};
+
+
 // Generate random assignments (Secret Santa rules)
+// Exclude a staff member by name
+function excludeMyName() {
+  const name = document.getElementById("excludeName").value.trim();
+  if (name && staff.some(s => s.name === name)) {
+    excludedName = name;
+    document.getElementById("excludeMsg").innerText = `${name} will not be assigned a recipient.`;
+    assignRecipients(); // re-run assignments without excluded person
+    renderCircles();
+  } else {
+    document.getElementById("excludeMsg").innerText = "Name not found in staff list.";
+  }
+}
+
 function assignRecipients() {
-  let givers = [...staff];
+  let givers = staff.filter(s => s.name !== excludedName);
   let receivers = [...staff];
   let valid = false;
 
@@ -33,6 +55,8 @@ function assignRecipients() {
     ...giver,
     recipient: receivers[i].name
   }));
+// --- NEW: save assignments to localStorage ---
+  localStorage.setItem(STORAGE_KEYS.ASSIGNMENTS, JSON.stringify(assignments));
 }
 
 // Build the circles
@@ -50,6 +74,8 @@ function renderCircles() {
       if (!alreadyClicked) {
         circle.innerText = person.recipient;
         alreadyClicked = true;
+// --- NEW: save picked recipient ---
+        localStorage.setItem(STORAGE_KEYS.CLICKED_RECIPIENT, person.recipient);
 
         // lock all other circles
         document.querySelectorAll(".circle").forEach(c => {
@@ -66,7 +92,27 @@ function renderCircles() {
 
 // Initialize
 window.onload = () => {
-  assignRecipients();
+  // --- NEW: try to load saved assignments ---
+  const savedAssignments = localStorage.getItem(STORAGE_KEYS.ASSIGNMENTS);
+  if (savedAssignments) {
+    assignments = JSON.parse(savedAssignments);
+  } else {
+    assignRecipients();
+  }
+
   renderCircles();
+
+  // --- NEW: check if user already picked ---
+  const savedRecipient = localStorage.getItem(STORAGE_KEYS.CLICKED_RECIPIENT);
+  if (savedRecipient) {
+    const container = document.getElementById("circles");
+    container.innerHTML = `<p>You already picked: <strong>${savedRecipient}</strong></p>`;
+    alreadyClicked = true;
+  }
 };
 
+// --- NEW: Reset Game button logic ---
+document.getElementById("resetBtn").onclick = () => {
+  localStorage.clear();
+  location.reload(); // refresh to start fresh
+};
