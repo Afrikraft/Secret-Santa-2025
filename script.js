@@ -11,8 +11,11 @@ const staff = [
   { name: "Glory", color: "Green" },
   
   { name: "Chidinma", color: "Blue" },
+  { name: "Adebayo", color: "Black" },
+  { name: "Collins", color: "Brown" },
+  { name: "Olusegun", color: "Gold" },
+  { name: "Ariel", color: "skyblue" },
   
-  { name: "Collins", color: "black" }
 ];
 let excludedName = " ";
 let assignments = [];
